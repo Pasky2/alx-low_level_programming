@@ -7,29 +7,21 @@
  * @array: pointer to array
  * @size: size of @array
  * @cmp: pointer to function call to check index in array
- *       if it matches
+ *if it matches
  *
- * Return: Always 0 (Success)
+ * Return: Always 0
  */
 
 int int_index(int *array, int size, int (*cmp)(int))
 {
 	int j;
-	bool x;
 
-	if (array != NULL && size > 0 && cmp != NULL)
+	if (array == NULL || size <= 0 || cmp == NULL)
+		return (-1);
+	for (j = 0; j < size; j++)
 	{
-		if (size <= 0)
-			return (-1);
-
-		for (j = 0; j < size; j++)
-		{
-			x = cmp(array[j]);
-			if (x == TRUE)
-				return (j);
-		}
+		if (cmp(array[j]))
+			return (j);
 	}
-
 	return (-1);
-
 }
